@@ -16,30 +16,16 @@ function checkAuthenticated(req, res, next) {
 
 Router.route('/login')
   .post(passport.authenticate('local', {
-    failureRedirect: '/loginerror',
-    failureFlash: true
+    failureRedirect: '/login',
+    failureFlash: false
   }), function (req, res, next) {
-    console.log('response', res);
     return res.sendStatus(200);
-  });
-
-Router.route('/loginerror')
-  .get((req, res) => {
-    console.log('LOGIN ERROR')
-    console.log('LOGIN ERROR')
-    console.log('LOGIN ERROR')
-    console.log('LOGIN ERROR')
-    console.log('LOGIN ERROR')
-    console.log(req.flash('messages'));
-
-    console.log('messages')
-    console.log('messages')
-    console.log('messages')
-    console.log('messages')
-    console.log('messages')
-    console.log('messages')
-    return res.sendStatus(400);
   })
+  .get((req, res) => {
+    if (!req.user) {
+      return res.status(400).send('Email or password is incorrect');
+    }
+  });
 
 Router.route('/register')
   .post(userControllers.registerUser)

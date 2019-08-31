@@ -14,7 +14,6 @@ class Register extends Component {
     ev.preventDefault();
 
     this.props.registerUser(this.state);
-    console.log(this.state);
   }
 
   handleChange = (ev) => {

@@ -1,13 +1,14 @@
+const config = require('../../config/config');
+
 export const RegisterAction = (user) => {
   return (dispatch, getState) => {
     console.log('attempting to register', user);
-    fetch('http://localhost:3001/register', {
+    fetch(config.BACKEND_URL +'/register', {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
       body: JSON.stringify(user)
     })
     .then(response => {
-      console.log(response)
       dispatch({ type: 'REGISTER_SUCCESS' })
     });
   }
@@ -16,14 +17,20 @@ export const RegisterAction = (user) => {
 export const LoginAction = (user) => {
   return (dispatch, getState) => {
     console.log('attempting to login user');
-    fetch('http://localhost:3001/login', {
+    fetch(config.BACKEND_URL+'/login', {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
       body: JSON.stringify(user)
     })
     .then(response => {
-      console.log(response)
-      dispatch({ type: 'LOGIN_SUCCESS' })
+      if (!response.ok) {
+        return response.text()
+          .then(text => {
+            return dispatch({ type: 'LOGIN_ERROR', err: text })
+          });
+        }
+
+        return dispatch({ type: 'LOGIN_SUCCESS' })
     });
   }
 }

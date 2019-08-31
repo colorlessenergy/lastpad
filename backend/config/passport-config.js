@@ -10,17 +10,15 @@ function initialize (passport) {
     if (typeof password !== 'string')
       return done(null, false, { message: 'missing password' })
     
-    console.log(email);
-
     User.findOne({ email: email }, function (err, user) {
 
       if (err) return done(err);
-      if (!user) return done(null, false, { message: 'no user with that email'});
+      if (!user) return done(null, false);
 
       user.comparePassword(password, function (err, isMatch) {
         if (err) return done(err);
 
-        if (!isMatch) done(null, false, { message: 'incorrect password'});
+        if (!isMatch) done(null, false);
 
         return done(null, user)
       });

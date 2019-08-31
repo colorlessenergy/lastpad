@@ -4,8 +4,11 @@ const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
 
-mongoose.connect('mongodb://lastpad123:lastpad123@ds311968.mlab.com:11968/lastpad', { useNewUrlParser: true, keepAlive: 120 })
+const config = require('./config/config')
+
+mongoose.connect(config.MONGO_DB, { useNewUrlParser: true, keepAlive: 120 })
   .then(function (res) {
     return console.log('connected');
   })
@@ -17,30 +20,26 @@ mongoose.connect('mongodb://lastpad123:lastpad123@ds311968.mlab.com:11968/lastpa
 const passport = require('passport');
 const initializePassport = require('./config/passport-config');
 
-const flash = require('express-flash');
 const session = require('express-session');
 
-initializePassport(passport);
-
-
+// Configure Express application.
 app.use(cors());
-
-
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
-app.use(flash())
+
 app.use(session({
   secret: 'secret',
   resave: false,
   saveUninitialized: false
-}))
-app.use(passport.initialize())
-app.use(passport.session())
+}));
 
+app.use(passport.initialize());
+app.use(passport.session());
 
+initializePassport(passport);
+
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 
 const authsRouter = require('./routes/authRouter');

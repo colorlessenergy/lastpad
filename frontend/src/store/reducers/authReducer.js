@@ -18,6 +18,15 @@ const authReducer = (state=initState, action) => {
         authError: null
       }
 
+    case 'LOGIN_ERROR':
+      console.log('LOGIN FAILED');
+      return {
+        ...state,
+        authError: action.err
+      }
+
+
+
     default: 
       console.log('action does not exist');
       return state

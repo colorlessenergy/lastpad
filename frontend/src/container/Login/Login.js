@@ -51,6 +51,11 @@ class Register extends Component {
 
         <div>
           <button>submit</button>
+
+          { this.props.authError ? (<p> 
+            { this.props.authError }
+          </p>) : (null)
+          }
         </div>
       </form>
     );
