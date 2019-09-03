@@ -10,7 +10,7 @@ const config = require('./config/config')
 
 mongoose.connect(config.MONGO_DB, { useNewUrlParser: true, keepAlive: 120 })
   .then(function (res) {
-    return console.log('connected');
+    return console.log('connected to mongodb');
   })
   .catch(function (err) {
     return console.log(err)
@@ -43,8 +43,10 @@ app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 
 const authsRouter = require('./routes/authRouter');
+const noteRouter = require('./routes/noteRouter');
 
 app.use('/', authsRouter);
+app.use('/note', noteRouter);
 
 // error handler
 app.use(function (err, req, res, next) {

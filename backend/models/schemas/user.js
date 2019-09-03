@@ -5,13 +5,13 @@ let Schema = mongoose.Schema;
 let userSchema = new Schema({
   email: { type: String, required: true, trim: true, unique: true },
   password: { type: String, required: true },
+  notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }],
   token: String
 });
 
 // methods for validating password
 userSchema.methods.comparePassword = function (pw, callback) {
   bcrypt.compare(pw, this.password, function (err, isMatch) {
-    console.log(pw, isMatch, "in compare password");
     if (err) {
       return callback(err);
     }

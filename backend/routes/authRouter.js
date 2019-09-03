@@ -5,14 +5,6 @@ let Router = express.Router();
 
 const userControllers = require('../controllers/user');
 
-// use this to authenticate routes
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-
-  return res.status(403).send('forbidden');
-}
 
 Router.route('/login')
   .post(passport.authenticate('local', {
