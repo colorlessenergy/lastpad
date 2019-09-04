@@ -22,7 +22,7 @@ exports.createNote = function (req, res, next) {
 
     User.findById(req.user._id, function (err, user) {
       if (err) return next(err);
-      user.stories.push(note._id);
+      user.notes.push(note._id);
 
       user.save(function (err) {
         if (err) return next(err);
