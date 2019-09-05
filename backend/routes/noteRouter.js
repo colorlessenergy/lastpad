@@ -13,7 +13,8 @@ function checkAuthenticated(req, res, next) {
 
 Router.route('/:id')
   .get(checkAuthenticated, noteController.getNoteById)
-  .delete(checkAuthenticated, noteController.deleteNoteById);
+  .delete(checkAuthenticated, noteController.deleteNoteById)
+  .put(checkAuthenticated, noteController.updateNoteById);
 
 
 Router.route('/')

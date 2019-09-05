@@ -83,13 +83,34 @@ exports.deleteNoteById = function (req, res, next) {
 
     User.findById(req.user._id, function (err, user) {
       if (err) return next(err);
+      if (!user) return res.status(404).send('user does not exist');
+
       user.notes.splice(user.notes.indexOf(note._id), 1);
 
       user.save(function (err, user) {
         if (err) return next(err);
 
+
         return res.status(200).send('note deleted');
       });
     });
+  });
+}
+
+
+/**
+ * find the user note in the collection and upate it depending
+ * on what the user submits
+ *
+ * @param {String} req.body.title - new title of the note
+ * @param {String} req.body.content - new content of the note
+ */
+
+exports.updateNoteById = function (req, res, next) {
+  Note.findByIdAndUpdate(req.params.id, req.body, function (err, note) {
+    if (err) return next(err);
+    if (!note) return res.status(404).send('note does not exist');
+
+    return res.sendStatus(200);
   });
 }
