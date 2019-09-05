@@ -22,6 +22,15 @@ exports.getNotes = function (req, res, next) {
     });
 }
 
+exports.getNoteById = function (req, res, next) {
+  Note
+    .findById(req.params.id, function (err, note) {
+      if (err) return next(err);
+
+      return res.json(note);
+    });
+}
+
 /**
  * create a note and pass a reference to that note in the user model
  * pass a reference of the user to the note
