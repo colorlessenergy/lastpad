@@ -11,6 +11,10 @@ function checkAuthenticated(req, res, next) {
   return res.status(403).send('forbidden');
 }
 
+Router.route('/:id')
+  .get(checkAuthenticated, noteController.getNoteById);
+
+
 Router.route('/')
   .get(checkAuthenticated, noteController.getNotes)
   .post(checkAuthenticated, noteController.createNote);
