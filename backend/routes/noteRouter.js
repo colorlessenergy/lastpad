@@ -12,7 +12,8 @@ function checkAuthenticated(req, res, next) {
 }
 
 Router.route('/:id')
-  .get(checkAuthenticated, noteController.getNoteById);
+  .get(checkAuthenticated, noteController.getNoteById)
+  .delete(checkAuthenticated, noteController.deleteNoteById);
 
 
 Router.route('/')
