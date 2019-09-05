@@ -22,6 +22,12 @@ exports.getNotes = function (req, res, next) {
     });
 }
 
+/**
+ * get a single note from a user
+ *
+ * @param {String} req.params.id - the note id
+ */
+
 exports.getNoteById = function (req, res, next) {
   Note
     .findById(req.params.id, function (err, note) {
