@@ -12,6 +12,7 @@ function checkAuthenticated(req, res, next) {
 }
 
 Router.route('/')
+  .get(checkAuthenticated, noteController.getNotes)
   .post(checkAuthenticated, noteController.createNote);
 
 

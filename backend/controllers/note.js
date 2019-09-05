@@ -2,6 +2,27 @@ var User = require('../models/schemas/user');
 var Note = require('../models/schemas/note');
 
 /**
+ * get a user's notes
+ *
+ * @param {String} req.user._id - user id
+ */
+exports.getNotes = function (req, res, next) {
+  User
+    .findById(req.user._id)
+    .populate('notes')
+    .exec(function (err, user) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.status(401).send('No user with that ID');
+      }
+
+      return res.json(user.notes);
+    });
+}
+
+/**
  * create a note and pass a reference to that note in the user model
  * pass a reference of the user to the note
  * 
