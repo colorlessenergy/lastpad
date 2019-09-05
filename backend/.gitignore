@@ -17,3 +17,5 @@ yarn-error.log*
 # config
 
 /config/config_dev.js
+
+package-lock.json
