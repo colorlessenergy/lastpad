@@ -32,7 +32,7 @@ exports.getNoteById = function (req, res, next) {
   Note
     .findById(req.params.id, function (err, note) {
       if (err) return next(err);
-      if (!note) return res.send(404);
+      if (!note) return res.sendStatus(404);
 
       return res.json(note);
     });
@@ -64,6 +64,31 @@ exports.createNote = function (req, res, next) {
       user.save(function (err) {
         if (err) return next(err);
         return res.send('created note').status(200);
+      });
+    });
+  });
+}
+
+/**
+ * delete a note from the note collection by using the note id passed by the url
+ * remove the reference from the user
+ *
+ * @param {String} req.params.id - id of the note
+ */
+
+exports.deleteNoteById = function (req, res, next) {
+  Note.findByIdAndDelete(req.params.id, function (err, note) {
+    if (err) return next(err);
+    if (!note) return res.status(404).send('note does not exist');
+
+    User.findById(req.user._id, function (err, user) {
+      if (err) return next(err);
+      user.notes.splice(user.notes.indexOf(note._id), 1);
+
+      user.save(function (err, user) {
+        if (err) return next(err);
+
+        return res.status(200).send('note deleted');
       });
     });
   });
