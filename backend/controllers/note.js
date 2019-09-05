@@ -32,6 +32,7 @@ exports.getNoteById = function (req, res, next) {
   Note
     .findById(req.params.id, function (err, note) {
       if (err) return next(err);
+      if (!note) return res.send(404);
 
       return res.json(note);
     });
