@@ -93,3 +93,20 @@ exports.deleteNoteById = function (req, res, next) {
     });
   });
 }
+
+
+/**
+ * find the user note in the collection and upate it depending
+ * on what the user submits
+ *
+ * @param {String} req.body.title - new title of the note
+ * @param {String} req.body.content - new content of the note
+ */
+
+exports.updateNoteById = function (req, res, next) {
+  Note.findByIdAndUpdate(req.params.id, req.body, function (err, note) {
+    if (err) return next(err);
+
+    return res.sendStatus(200);
+  });
+}
