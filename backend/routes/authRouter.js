@@ -12,8 +12,6 @@ Router.route('/login')
     failureFlash: false
   }), function (req, res, next) {
     console.log(req.user, 'login succesful');
-    req.user = req.user;
-    
     return res.sendStatus(200);
   })
   .get((req, res) => {
