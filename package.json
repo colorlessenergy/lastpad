@@ -1,0 +1,21 @@
+{
+  "name": "lastpad",
+  "version": "1.0.0",
+  "description": "a website to make notes",
+  "scripts": {
+    "heroku-postbuild": "npm run install-server && npm run build-client",
+    "start": "node backend/app.js",
+    "install-server": "cd ./backend && npm install",
+    "build-client": "cd ./frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colorlessenergy/lastpad.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colorlessenergy/lastpad/issues"
+  },
+  "homepage": "https://github.com/colorlessenergy/lastpad#readme"
+}
