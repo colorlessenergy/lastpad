@@ -6,6 +6,7 @@ export const RegisterAction = (user) => {
     fetch(config.BACKEND_URL +'/register', {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify(user)
     })
     .then(response => {
@@ -20,6 +21,7 @@ export const LoginAction = (user) => {
     fetch(config.BACKEND_URL+'/login', {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify(user)
     })
     .then(response => {

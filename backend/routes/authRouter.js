@@ -11,9 +11,13 @@ Router.route('/login')
     failureRedirect: '/login',
     failureFlash: false
   }), function (req, res, next) {
+    console.log(req.user, 'login succesful');
+    req.user = req.user;
+    
     return res.sendStatus(200);
   })
   .get((req, res) => {
+    console.log(req.user, 'login unsucessful');
     if (!req.user) {
       return res.status(400).send('Email or password is incorrect');
     }

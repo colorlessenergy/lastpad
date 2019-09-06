@@ -23,11 +23,10 @@ const initializePassport = require('./config/passport-config');
 const session = require('express-session');
 
 // Configure Express application.
-app.use(cors());
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(morgan('dev'));
-
+app.use(morgan('dev'))
 app.use(session({
   secret: 'secret',
   resave: false,
