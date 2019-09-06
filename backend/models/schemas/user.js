@@ -21,7 +21,6 @@ userSchema.methods.comparePassword = function (pw, callback) {
 
 userSchema.pre('save', function (next) {
   let user = this;
-  console.log(this);
 
   if (!user.email) {
     return next(new Error('Missing user email'));
