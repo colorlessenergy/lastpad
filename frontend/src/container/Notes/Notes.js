@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GetAllUserNotesAction } from '../../store/actions/note';
 
+import classes from './Notes.module.css'
+
 class Note extends Component {
   state = {
     notes: []
@@ -24,22 +26,36 @@ class Note extends Component {
   render() {
     // console.log(this.state.notes)
     let notes = this.state.notes !== undefined ? this.state.notes.map(note => (
-      <Link to={'/note/' + note._id} key={note._id}>
-        <div>
-          <h1>
-            {note.title}
-          </h1>
-          <p>
-            {note.content}
-          </p>
+      <article key={note._id} className={classes['note']}>
+        <h3 className={classes['note__title']}>
+          {note.title}
+        </h3>
+        <p className={classes['note__paragraph']}>
+          {note.content}
+        </p>
+
+        <div className={classes['links']}>
+          <Link className={[classes['links--edit'], classes['links__link']].join(' ')} to={'/note/edit/' + note._id}>
+            Edit
+          </Link>
+          <Link className={[classes['links--view'], classes['links__link']].join(' ')} to={'/note/' + note._id}>
+            View
+          </Link>
+          <Link className={[classes['links--delete'], classes['links__link']].join(' ')} to={'/note/delete/' + note._id}>
+            Delete
+          </Link>
         </div>
-      </Link>
+      </article>
     )) : (null);
 
     return (
       <div>
-        <h1>home HELLO</h1>
-        { notes }
+        <div className={classes['filter-container']}>
+          <input placeholder="filter notes" className={classes['filter']} type="text"></input>
+        </div>
+        <section className={classes['notes']}>
+          {notes}
+        </section>
       </div>
     )
   }
