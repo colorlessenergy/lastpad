@@ -1,3 +1,3 @@
 module.exports = {
-  BACKEND_URL: process.env.BACKEND_URL,
+  BACKEND_URL: 'https://lastpad.herokuapp.com',
 }
