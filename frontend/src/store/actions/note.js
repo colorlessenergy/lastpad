@@ -1,6 +1,5 @@
 const config = require('../../config/config');
 
-
 export const GetAllUserNotesAction = () => {
   return (dispatch, getState) => {
     fetch(config.BACKEND_URL + '/note', {
@@ -13,5 +12,22 @@ export const GetAllUserNotesAction = () => {
         })
     })
     .catch(err => console.log(err));
-  }
-}
+  };
+};
+
+export const getUserNoteAction = (noteId, history) => {
+  return (dispatch, getState) => {
+    fetch(config.BACKEND_URL + '/note/' + noteId, {
+      credentials: 'include'
+    })
+    .then(response => {
+      return response.json()
+        .then(note => {
+          dispatch({ type: 'RETRIEVE_SINGLE_NOTE_SUCCESS', note });
+        })
+    })
+    .catch(err => {
+      return history.push('/');
+    });
+  };
+};

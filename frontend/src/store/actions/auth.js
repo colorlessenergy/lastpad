@@ -12,8 +12,8 @@ export const RegisterAction = (user) => {
     .then(response => {
       dispatch({ type: 'REGISTER_SUCCESS' })
     });
-  }
-}
+  };
+};
 
 export const LoginAction = (user) => {
   return (dispatch, getState) => {
@@ -34,5 +34,5 @@ export const LoginAction = (user) => {
 
         return dispatch({ type: 'LOGIN_SUCCESS' })
     });
-  }
-}
+  };
+};

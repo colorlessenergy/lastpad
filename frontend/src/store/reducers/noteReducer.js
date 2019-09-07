@@ -1,5 +1,6 @@
 let initState = {
-  notes: []
+  notes: [],
+  note: null
 }
 
 const noteReducer = (state=initState, action) => {
@@ -7,6 +8,10 @@ const noteReducer = (state=initState, action) => {
     case 'RETRIEVE_NOTES_SUCCESS':
       return {
         notes: action.notes
+      }
+    case 'RETRIEVE_SINGLE_NOTE_SUCCESS':
+      return {
+        note: action.note
       }
     default:
       return state
