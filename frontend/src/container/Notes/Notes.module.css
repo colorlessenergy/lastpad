@@ -1,45 +1,70 @@
 .note {
-  margin: 0 20px;
-  padding: 24px 20px 17px 20px;
+  margin: 0 20px 20px 20px;
+  /* padding: 24px 20px 17px 20px; */
 
-  background-color: #F4F6FB;
-  margin-bottom: 20px;
+  
+  border-radius: 10px;
+  box-shadow: 3px 4px 8px 0px #dadada;
+  background-color: rgba(6, 169, 244, 0.8);
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
 }
 
 .note__title {
   margin: 0;
+  padding: 20px;
+  background-color: #03a9f4;
 
-  color: #001C3E;
+
   font-size: 18px;
 }
 
 .note__paragraph {
-  margin: 20px 0 30px 0;
+  padding: 38px 10px;
+  margin: 0;
 
-  color: #7787A0;
+  color: #fff;
+  text-align: center;
 }
 
 .links {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 20px;
+
+  border-top: 1px solid #85cefb;
 }
 
 .links__link {
+  padding: 10px 15px;
+  margin: 0 10px;
+  
+  border-radius: 2em;
   font-weight: bold;
   text-decoration: none;
   font-size: 14px;
+
+  transition: opacity 0.3s ease-in-out;
+}
+
+.links__link:hover {
+  opacity: 0.7;
 }
 
 .links--edit {
-  color: #44B96C;
+  color: #fff;
+  background-color: #01ca25;
 }
 
 .links--view {
-  color: #000000;
+  color: #fff;
+  background-color: #06a9f4;
 }
 
 .links--delete {
-  color: #EA4D85;
+  color: #fff;
+  background-color: #fb2c2d;
 }
 
 .filter {
@@ -47,7 +72,8 @@
   padding: 9px;
   width: 88%;
  
-  border: none;
+  border: 1px solid #000;
+  border-radius: 5px;
   background-color: #F4F6FB;
   color: #7787A0;
   outline: none;
@@ -58,15 +84,12 @@
   .notes {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-
+    justify-content: center;
   }
 
   .note {
-    height: 220px;
     width: 28%;
-    margin: 40px;
-
+    margin: 30px;
 
     display: flex;
     flex-direction: column;
@@ -78,7 +101,6 @@
 
   .note__paragraph {
     font-size: 18px;
-    margin-top: 38px;
   }
 
   .links {
@@ -90,7 +112,6 @@
   }
 
   .filter-container {
-    margin-bottom: 69px;
     width: 100%;
 
     text-align: center
