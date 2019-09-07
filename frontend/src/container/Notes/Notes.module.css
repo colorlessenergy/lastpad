@@ -1,0 +1,102 @@
+.note {
+  margin: 0 20px;
+  padding: 24px 20px 17px 20px;
+
+  background-color: #F4F6FB;
+  margin-bottom: 20px;
+}
+
+.note__title {
+  margin: 0;
+
+  color: #001C3E;
+  font-size: 18px;
+}
+
+.note__paragraph {
+  margin: 20px 0 30px 0;
+
+  color: #7787A0;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.links__link {
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.links--edit {
+  color: #44B96C;
+}
+
+.links--view {
+  color: #000000;
+}
+
+.links--delete {
+  color: #EA4D85;
+}
+
+.filter {
+  margin: 35px 20px 17px 20px;
+  padding: 9px;
+  width: 88%;
+ 
+  border: none;
+  background-color: #F4F6FB;
+  color: #7787A0;
+  outline: none;
+  letter-spacing: 1px;
+}
+
+@media screen and (min-width: 961px) {
+  .notes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+  }
+
+  .note {
+    height: 220px;
+    width: 28%;
+    margin: 40px;
+
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .note__title {
+    font-size: 20px;
+  }
+
+  .note__paragraph {
+    font-size: 18px;
+    margin-top: 38px;
+  }
+
+  .links {
+    margin-top: auto;
+  }
+
+  .links__link {
+    font-size: 16px;
+  }
+
+  .filter-container {
+    margin-bottom: 69px;
+    width: 100%;
+
+    text-align: center
+  }
+
+  .filter {
+    width: 29%;
+  }
+}
