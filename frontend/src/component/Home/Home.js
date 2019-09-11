@@ -4,7 +4,9 @@ import Notes from '../../container/Notes/Notes';
 
 function Home () {
   return (
-    <Notes />
+    <React.Fragment>
+      <Notes />
+    </React.Fragment>
   )
 }
 

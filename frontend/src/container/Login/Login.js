@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { LoginAction } from '../../store/actions/auth';
+import { LoginAction, userIsLogin } from '../../store/actions/auth';
+import { Redirect } from 'react-router-dom';
 
 
-class Register extends Component {
+class Login extends Component {
   state = {
     email: '',
     password: ''
@@ -24,6 +25,11 @@ class Register extends Component {
   }
 
   render() {
+
+    if (this.props.isUserLogin) {
+      return <Redirect to='/' />
+    }
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
@@ -64,7 +70,8 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authError: state.auth.authError
+    authError: state.auth.authError,
+    isUserLogin: state.auth.userIsLogin
   }
 }
 
@@ -76,4 +83,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

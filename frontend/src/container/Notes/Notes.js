@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { GetAllUserNotesAction } from '../../store/actions/note';
 
 import classes from './Notes.module.css'
@@ -24,7 +24,10 @@ class Note extends Component {
   }
 
   render() {
-    // console.log(this.state.notes)
+    if (!this.props.userAuth) {
+      return <Redirect to='/login' />
+    }
+    
     let notes = this.state.notes !== undefined ? this.state.notes.map(note => (
       <article key={note._id} className={classes['note']}>
         <h3 className={classes['note__title']}>
@@ -63,7 +66,8 @@ class Note extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    notes: state.notes.notes
+    notes: state.notes.notes,
+    userAuth: state.auth.userIsLogin
   }
 }
 

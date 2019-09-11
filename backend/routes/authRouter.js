@@ -21,6 +21,21 @@ Router.route('/login')
     }
   });
 
+/**
+ * Route to check if the user is login to do redirecting on initial page
+ * laod
+ */
+
+Router.route('/userislogin')
+  .get(function (req, res, next) {
+    console.log(req.user)
+    if (req.user) {
+      return res.sendStatus(200);
+    }
+
+    return res.sendStatus(403);
+  });
+
 Router.route('/register')
   .post(userControllers.registerUser)
 
