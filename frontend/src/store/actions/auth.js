@@ -36,3 +36,36 @@ export const LoginAction = (user) => {
     });
   };
 };
+
+export const userIsLogin = () => {
+  return (dispatch, getState) => {
+    fetch(config.BACKEND_URL + '/userislogin', {
+      credentials: 'include'
+    })
+    .then((res) => {
+      if (!res.ok) {
+        return dispatch({ type: 'CHECK_USER_AUTH_ERROR' });
+      } else {
+        return dispatch({ type: 'CHECK_USER_AUTH_SUCCESS' });
+      }
+    })
+    .catch(err => console.log(err));
+  }
+};
+
+export const logoutUser = () => {
+  return (dispatch, getState) => {
+    fetch(config.BACKEND_URL + '/logout', {
+      credentials: 'include',
+      method: 'DELETE'
+    })
+    .then((res) => {
+      if (!res.ok) {
+        return dispatch({ type: 'USER_LOGOUT_ERROR' });
+      } else {
+        return dispatch({ type: 'USER_LOGOUT_SUCCESSFUL' });
+      }
+    })
+    .catch(err => console.log(err));
+  }
+};
