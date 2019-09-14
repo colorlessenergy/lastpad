@@ -1,3 +1,5 @@
+import * as actionTypes from '../actions/actionTypes';
+
 let initState = {
   notes: [],
   note: null
@@ -5,11 +7,11 @@ let initState = {
 
 const noteReducer = (state=initState, action) => {
   switch(action.type) {
-    case 'RETRIEVE_NOTES_SUCCESS':
+    case actionTypes.RETRIEVE_NOTES_SUCCESS:
       return {
         notes: action.notes
       }
-    case 'RETRIEVE_SINGLE_NOTE_SUCCESS':
+    case actionTypes.RETRIEVE_SINGLE_NOTE_SUCCESS:
       return {
         note: action.note
       }

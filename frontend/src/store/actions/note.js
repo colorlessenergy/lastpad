@@ -1,3 +1,4 @@
+import * as actionTypes from './actionTypes';
 const config = require('../../config/config');
 
 export const GetAllUserNotesAction = () => {
@@ -8,7 +9,7 @@ export const GetAllUserNotesAction = () => {
     .then(response => {
       return response.json()
         .then((notes) => {
-          dispatch({ type: 'RETRIEVE_NOTES_SUCCESS', notes });
+          dispatch({ type: actionTypes.RETRIEVE_NOTES_SUCCESS, notes })
         })
     })
     .catch(err => console.log(err));
@@ -23,7 +24,7 @@ export const getUserNoteAction = (noteId, history) => {
     .then(response => {
       return response.json()
         .then(note => {
-          dispatch({ type: 'RETRIEVE_SINGLE_NOTE_SUCCESS', note });
+          dispatch({ type: actionTypes.RETRIEVE_SINGLE_NOTE_SUCCESS, note });
         })
     })
     .catch(err => {

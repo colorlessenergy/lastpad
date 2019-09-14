@@ -1,3 +1,4 @@
+import * as actionTypes from './actionTypes';
 const config = require('../../config/config');
 
 export const RegisterAction = (user) => {
@@ -10,7 +11,7 @@ export const RegisterAction = (user) => {
       body: JSON.stringify(user)
     })
     .then(response => {
-      dispatch({ type: 'REGISTER_SUCCESS' })
+      dispatch({ type: actionTypes.REGISTER_SUCCESS })
     });
   };
 };
@@ -28,11 +29,11 @@ export const LoginAction = (user) => {
       if (!response.ok) {
         return response.text()
           .then(text => {
-            return dispatch({ type: 'LOGIN_ERROR', err: text })
+            return dispatch({ type: actionTypes.LOGIN_ERROR, err: text })
           });
         }
 
-        return dispatch({ type: 'LOGIN_SUCCESS' })
+        return dispatch({ type: actionTypes.LOGIN_SUCCESS })
     });
   };
 };
@@ -44,9 +45,9 @@ export const userIsLogin = () => {
     })
     .then((res) => {
       if (!res.ok) {
-        return dispatch({ type: 'CHECK_USER_AUTH_ERROR' });
+        return dispatch({ type: actionTypes.CHECK_USER_AUTH_ERROR });
       } else {
-        return dispatch({ type: 'CHECK_USER_AUTH_SUCCESS' });
+        return dispatch({ type: actionTypes.CHECK_USER_AUTH_SUCCESS });
       }
     })
     .catch(err => console.log(err));
@@ -61,9 +62,9 @@ export const logoutUser = () => {
     })
     .then((res) => {
       if (!res.ok) {
-        return dispatch({ type: 'USER_LOGOUT_ERROR' });
+        return dispatch({ type: actionTypes.USER_LOGOUT_ERROR });
       } else {
-        return dispatch({ type: 'USER_LOGOUT_SUCCESSFUL' });
+        return dispatch({ type: actionTypes.USER_LOGOUT_SUCCESSFUL });
       }
     })
     .catch(err => console.log(err));

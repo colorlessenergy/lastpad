@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { GetAllUserNotesAction } from '../../store/actions/note';
+import { GetAllUserNotesAction } from '../../store/actions/';
 
 import classes from './Notes.module.css'
 

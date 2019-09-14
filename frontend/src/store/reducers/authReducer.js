@@ -1,3 +1,5 @@
+import * as actionTypes from '../actions/actionTypes';
+
 var initState = {
   authError: null,
   userIsLogin: false
@@ -5,60 +7,50 @@ var initState = {
 
 const authReducer = (state=initState, action) => {
   switch (action.type) {
-    case 'REGISTER_SUCCESS':
+    case actionTypes.REGISTER_SUCCESS:
       console.log('attempted to register successfully');
       return {
         ...state,
         authError: null
       };
-    
-    case 'LOGIN_SUCCESS':
+    case actionTypes.LOGIN_SUCCESS:
       console.log('attempted to login successfully');
       return {
         ...state,
         authError: null,
         userIsLogin: true
       }
-
-    case 'LOGIN_ERROR':
+    case actionTypes.LOGIN_ERROR:
       console.log('LOGIN FAILED');
       return {
         ...state,
         authError: action.err,
         userIsLogin: false
       }
-    
-    case 'CHECK_USER_AUTH_SUCCESS':
+    case actionTypes.CHECK_USER_AUTH_SUCCESS:
       console.log('user is login')
       return {
         ...state,
         userIsLogin: true
       }
-    
-    case 'CHECK_USER_AUTH_ERROR':
+    case actionTypes.CHECK_USER_AUTH_ERROR:
       console.log('user is NOT login')
       return {
         ...state,
         userIsLogin: false
       }
-
-    case 'USER_LOGOUT_SUCCESSFUL':
+    case actionTypes.USER_LOGOUT_SUCCESSFUL:
       console.log('user is logout')
       return {
         ...state,
         userIsLogin: false
       }
-
-    case 'USER_LOGOUT_ERROR':
+    case actionTypes.USER_LOGOUT_ERROR:
       console.log('user is NOT logout')
       return {
         ...state,
         userIsLogin: true
       }
-
-
-
-
     default: 
       console.log('action does not exist');
       return state
