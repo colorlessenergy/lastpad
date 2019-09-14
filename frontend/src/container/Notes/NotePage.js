@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import { getUserNoteAction } from '../../store/actions/note';
+import { getUserNoteAction } from '../../store/actions/';
 
 class NotePage extends Component {
   state = {

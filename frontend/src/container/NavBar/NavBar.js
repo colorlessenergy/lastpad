@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { userIsLogin, logoutUser } from '../../store/actions/auth';
+import { userIsLogin, logoutUser } from '../../store/actions/';
 
 class NavBar extends Component {
 
