@@ -69,8 +69,6 @@ class CreateNote extends Component {
   }
 
   render() {
-
-    console.log(this.props)
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
@@ -101,12 +99,6 @@ class CreateNote extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    note: state.notes.note 
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     createNote: (note, history) => {
@@ -115,4 +107,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateNote);
+export default connect(null, mapDispatchToProps)(CreateNote);

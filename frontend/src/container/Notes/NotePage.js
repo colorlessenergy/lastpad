@@ -32,8 +32,6 @@ class NotePage extends Component {
       }
     }
 
-    console.log(content);
-
     return (
       <div>
         <p>Here is your note:</p>

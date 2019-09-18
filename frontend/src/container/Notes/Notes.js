@@ -35,9 +35,9 @@ class Note extends Component {
         <h3 className={classes['note__title']}>
           {note.title}
         </h3>
-        <p className={classes['note__paragraph']}>
+        <div className={classes['note__paragraph']}>
           { renderHTML(note.content) }
-        </p>
+        </div>
 
         <div className={classes['links']}>
           <Link className={[classes['links--edit'], classes['links__link']].join(' ')} to={'/note/edit/' + note._id}>
