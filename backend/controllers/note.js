@@ -47,11 +47,11 @@ exports.getNoteById = function (req, res, next) {
  */
 
 exports.createNote = function (req, res, next) {
-
   let note = new Note({
     content: req.body.content,
     title: req.body.title,
-    creator: req.user._id
+    creator: req.user._id,
+    createdAt: new Date()
   });
 
   note.save(function (err, note) {
@@ -63,7 +63,7 @@ exports.createNote = function (req, res, next) {
 
       user.save(function (err) {
         if (err) return next(err);
-        return res.send('created note').status(200);
+        return res.json(note);
       });
     });
   });

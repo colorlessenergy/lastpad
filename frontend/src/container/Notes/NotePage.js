@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 
 import { getUserNoteAction } from '../../store/actions/';
 
+import renderHTML from 'react-render-html';
+
 class NotePage extends Component {
   state = {
     note: null
@@ -30,12 +32,14 @@ class NotePage extends Component {
       }
     }
 
+    console.log(content);
+
     return (
       <div>
         <p>Here is your note:</p>
         <div>
           <h1>{title}</h1>
-          <p>{content}</p>
+          { content ? renderHTML(content) : (null) }
         </div>
         <div>
           <Link to={'/note/edit/' + noteId}>

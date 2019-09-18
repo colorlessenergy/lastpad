@@ -15,6 +15,12 @@ const noteReducer = (state=initState, action) => {
       return {
         note: action.note
       }
+
+    case actionTypes.CREATE_NOTE_SUCCESS:
+      return {
+        note: action.note
+      }
+
     default:
       return state
   }

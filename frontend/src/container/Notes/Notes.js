@@ -5,6 +5,8 @@ import { GetAllUserNotesAction } from '../../store/actions/';
 
 import classes from './Notes.module.css'
 
+import renderHTML from 'react-render-html';
+
 class Note extends Component {
   state = {
     notes: []
@@ -34,7 +36,7 @@ class Note extends Component {
           {note.title}
         </h3>
         <p className={classes['note__paragraph']}>
-          {note.content}
+          { renderHTML(note.content) }
         </p>
 
         <div className={classes['links']}>

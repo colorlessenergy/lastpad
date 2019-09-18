@@ -24,7 +24,7 @@ class NavBar extends Component {
     // show register and login
     const links = this.props.isUserLogin ? (
       <div>
-        <Link to='/create'>create</Link>
+        <Link to='/note/create'>create</Link>
         <Link to='/'>lastpad</Link>
         <p onClick={this.logoutUser}>logout</p>
       </div>
