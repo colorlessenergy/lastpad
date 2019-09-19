@@ -54,7 +54,7 @@ export const createNoteAction = (note, history) => {
   };
 };
 
-export const deleteUserNoteAction = (noteId, history) => {
+export const deleteUserNoteAction = (noteId) => {
   return (dispatch, getState) => {
     fetch(config.BACKEND_URL + '/note/' + noteId, {
       credentials: 'include',
