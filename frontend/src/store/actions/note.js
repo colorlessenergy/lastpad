@@ -32,3 +32,24 @@ export const getUserNoteAction = (noteId, history) => {
     });
   };
 };
+
+export const createNoteAction = (note, history) => {
+  return (dispatch, getState) => {
+    fetch(config.BACKEND_URL + '/note', {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(note)
+    })
+    .then(response => {
+      return response.json()
+        .then(note => {
+          history.push('/note/'+ note._id);
+          dispatch({ type: actionTypes.CREATE_NOTE_SUCCESS, note })
+        });
+    })
+    .catch(err => {
+      history.push('/');
+    })
+  }
+}
