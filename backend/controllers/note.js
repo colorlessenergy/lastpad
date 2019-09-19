@@ -85,13 +85,15 @@ exports.deleteNoteById = function (req, res, next) {
       if (err) return next(err);
       if (!user) return res.status(404).send('user does not exist');
 
+      let deletedNoteIndex = user.notes.indexOf(note._id);
+      let deletedNoteId = user.notes[deletedNoteIndex];
+
       user.notes.splice(user.notes.indexOf(note._id), 1);
 
       user.save(function (err, user) {
         if (err) return next(err);
 
-
-        return res.status(200).send('note deleted');
+        return res.json(deletedNoteId);
       });
     });
   });

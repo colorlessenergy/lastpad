@@ -64,6 +64,7 @@
 
 .links--delete {
   color: #fff;
+  cursor: pointer;
   background-color: #fb2c2d;
 }
 

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { GetAllUserNotesAction } from '../../store/actions/';
-
+import { GetAllUserNotesAction, deleteUserNoteAction } from '../../store/actions/';
 import classes from './Notes.module.css'
 
 import renderHTML from 'react-render-html';
@@ -17,7 +16,7 @@ class Note extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    let notes =  props.notes;
+    let notes = props.notes;
 
     return {
       notes: notes
@@ -29,7 +28,7 @@ class Note extends Component {
     if (!this.props.userAuth) {
       return <Redirect to='/login' />
     }
-    
+
     let notes = this.state.notes !== undefined ? this.state.notes.map(note => (
       <article key={note._id} className={classes['note']}>
         <h3 className={classes['note__title']}>
@@ -46,9 +45,9 @@ class Note extends Component {
           <Link className={[classes['links--view'], classes['links__link']].join(' ')} to={'/note/' + note._id}>
             View
           </Link>
-          <Link className={[classes['links--delete'], classes['links__link']].join(' ')} to={'/note/delete/' + note._id}>
+          <span className={[classes['links--delete'], classes['links__link']].join(' ')} onClick={() => this.props.deleteUserNote(note._id)}>
             Delete
-          </Link>
+          </span>
         </div>
       </article>
     )) : (null);
@@ -77,6 +76,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllUserNotesAction: () => {
       dispatch(GetAllUserNotesAction());
+    },
+    deleteUserNote: (noteId) => {
+      dispatch(deleteUserNoteAction(noteId));
     }
   }
 }

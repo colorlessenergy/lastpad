@@ -7,5 +7,6 @@ export {
 
 export {
   GetAllUserNotesAction,
-  getUserNoteAction
+  getUserNoteAction,
+  deleteUserNoteAction
 } from './note';
