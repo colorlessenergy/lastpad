@@ -40,7 +40,7 @@ class NotePage extends Component {
           { content ? renderHTML(content) : (null) }
         </div>
         <div>
-          <Link to={'/note/edit/' + noteId}>
+          <Link to={'/note/update/' + noteId}>
             Edit
           </Link>
           <Link to={'/note/' + noteId}>

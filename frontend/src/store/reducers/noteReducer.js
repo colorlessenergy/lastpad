@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 let initState = {
   notes: [],
-  note: null
+  note: null,
+  error: false
 };
 
 const noteReducer = (state = initState, action) => {
@@ -31,6 +32,18 @@ const noteReducer = (state = initState, action) => {
         ...state,
         notes: filteredNotes
       };
+
+    case actionTypes.UPDATE_NOTE_SUCCESS:
+      return {
+        ...state,
+        error: false
+      }
+
+    case actionTypes.UPDATE_NOTE_ERROR:
+      return {
+        ...state,
+        error: action.err
+      }
 
     default:
       return state;
