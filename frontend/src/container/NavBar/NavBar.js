@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { userIsLogin, logoutUser } from '../../store/actions/';
 
 class NavBar extends Component {
@@ -13,7 +13,7 @@ class NavBar extends Component {
   logoutUser = () => {
     this.props.logoutUser();
 
-    return <Redirect to='/login' />
+    return this.props.history.push('/login')
   }
 
   render () {

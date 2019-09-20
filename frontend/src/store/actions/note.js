@@ -71,3 +71,21 @@ export const deleteUserNoteAction = (noteId) => {
     });
   };
 };
+
+export const updateUserNoteAction = (note, history) => {
+  return (dispatch, getState) => {
+    fetch(config.BACKEND_URL + '/note/' + note._id, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      method: 'PUT',
+      body: JSON.stringify(note)
+    })
+    .then(res => {
+      history.push('/note/' + note._id);
+      dispatch({ type: actionTypes.UPDATE_NOTE_SUCCESS });
+    })
+    .catch(err => {
+      dispatch({ type: actionTypes.UPDATE_NOTE_ERROR, err });
+    })
+  }
+}

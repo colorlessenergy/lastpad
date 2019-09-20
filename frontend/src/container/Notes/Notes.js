@@ -39,7 +39,7 @@ class Note extends Component {
         </div>
 
         <div className={classes['links']}>
-          <Link className={[classes['links--edit'], classes['links__link']].join(' ')} to={'/note/edit/' + note._id}>
+          <Link className={[classes['links--edit'], classes['links__link']].join(' ')} to={'/note/update/' + note._id}>
             Edit
           </Link>
           <Link className={[classes['links--view'], classes['links__link']].join(' ')} to={'/note/' + note._id}>

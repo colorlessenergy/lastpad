@@ -8,6 +8,7 @@ import Login from '../container/Login/Login';
 import Home from '../component/Home/Home';
 
 import CreateNote from '../container/Notes/CreateNote/CreateNote';
+import UpdateNote from '../container/Notes/UpdateNote/UpdateNote';
 import Note from '../container/Notes/NotePage.js';
 
 import NavBar from '../container/NavBar/NavBar';
@@ -24,6 +25,7 @@ function Layout () {
         <Route path="/login" exact component={Login} />
 
         <Route path='/note/create' exact component={CreateNote} />
+        <Route path='/note/update/:id' exact component={UpdateNote} />
         <Route path="/note/:id" exact component={Note} />
       </Switch>
     </HashRouter>
