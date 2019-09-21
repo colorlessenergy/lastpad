@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "a website to make notes",
   "scripts": {
-    "heroku-postbuild": "npm run install-server && npm run build-client",
-    "start": "node backend/app.js",
-    "install-server": "cd ./backend && npm install",
-    "build-client": "cd ./frontend && npm install && npm run build"
+    "start": "cd ./backend && npm install && cd ../frontend && npm install && npm run build && node ../backend/app.js"
   },
   "repository": {
     "type": "git",
