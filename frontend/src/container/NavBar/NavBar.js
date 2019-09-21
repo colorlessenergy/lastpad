@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { userIsLogin, logoutUser } from '../../store/actions/';
 
+import classes from './NavBar.module.css';
+
 class NavBar extends Component {
 
   componentDidMount = () => {
@@ -23,17 +25,17 @@ class NavBar extends Component {
     // if user is not logged in
     // show register and login
     const links = this.props.isUserLogin ? (
-      <div>
-        <Link to='/note/create'>create</Link>
-        <Link to='/'>lastpad</Link>
-        <p onClick={this.logoutUser}>logout</p>
-      </div>
+      <nav className={classes['nav']}>
+        <Link className={classes['nav__link']} to='/note/create'>create</Link>
+        <Link className={classes['nav__link']} to='/'>lastpad</Link>
+        <p className={classes['nav__link']} onClick={this.logoutUser}>logout</p>
+      </nav>
       ) : (
-      <div>
-        <Link to='/register'>register</Link>
-        <Link to='/'>lastpad</Link>
-        <Link to='/login'>login</Link>
-      </div>
+        <nav className={classes['nav']}>
+        <Link className={classes['nav__link']} to='/register'>register</Link>
+        <Link className={classes['nav__link']} to='/'>lastpad</Link>
+        <Link className={classes['nav__link']} to='/login'>login</Link>
+      </nav>
       );
 
     return (
