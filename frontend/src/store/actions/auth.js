@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 const config = require('../../config/config');
 
-export const RegisterAction = (user) => {
+export const RegisterAction = (user, history) => {
   return (dispatch, getState) => {
     console.log('attempting to register', user);
     fetch(config.BACKEND_URL +'/register', {
@@ -11,7 +11,15 @@ export const RegisterAction = (user) => {
       body: JSON.stringify(user)
     })
     .then(response => {
-      dispatch({ type: actionTypes.REGISTER_SUCCESS })
+      if (!response.ok) {
+        dispatch({ type: actionTypes.REGISTER_ERROR, err: 'Email is already in use' })
+      } else {
+        history.push('/login');
+        dispatch({ type: actionTypes.REGISTER_SUCCESS });
+      }
+    })
+    .catch((err) => {
+      dispatch({ type: actionTypes.REGISTER_ERROR, err });
     });
   };
 };

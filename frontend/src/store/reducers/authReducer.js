@@ -13,6 +13,14 @@ const authReducer = (state=initState, action) => {
         ...state,
         authError: null
       };
+
+    case actionTypes.REGISTER_ERROR:
+      console.log('REGISTER FAILED', action);
+      return {
+        ...state,
+        authError: action.err
+      };
+
     case actionTypes.LOGIN_SUCCESS:
       console.log('attempted to login successfully');
       return {
