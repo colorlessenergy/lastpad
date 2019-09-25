@@ -7,6 +7,8 @@ import { createNoteAction } from '../../../store/actions/note';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+import classes from './CreateNote.module.css';
+
 class CreateNote extends Component {
 
   state = {
@@ -70,29 +72,41 @@ class CreateNote extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="title">
+      <form 
+        className={classes['form']}
+        onSubmit={this.handleSubmit}>
+        <div className={classes['form__group']}>
+          <label 
+            className={classes['form__label']}
+            htmlFor="title">
             title
           </label>
           <input
             type="text"
             id="title"
             name="title"
+            className={classes['form__input']}
             onChange={this.handleChange}
             value={this.state.title} />
         </div>
-        <label htmlFor='content'></label>
-        <ReactQuill
-          id="content"
-          modules={this.modules}
-          formats={this.formats}
-          value={this.state.content}
-          placeholder='Write about what you are feeling. :)'
-          onChange={this.onQuillChange} />
+        <div className={classes['form__group']}>
+          <label
+            className={classes['form__label']} 
+            htmlFor='content'>
+            content
+          </label>
+          <ReactQuill
+            id="content"
+            className={classes['form__texteditor']}
+            modules={this.modules}
+            formats={this.formats}
+            value={this.state.content}
+            placeholder='Write about what you are feeling. :)'
+            onChange={this.onQuillChange} />
+        </div>
 
-        <div>
-          <button>submit</button>
+        <div className={classes['form__button--container']}>
+          <button className={classes['form__button']}>Create</button>
         </div>
       </form>
     )

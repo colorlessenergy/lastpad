@@ -10,7 +10,7 @@ function Buttons(props) {
       { props.ableToEdit ? (
         <Link
           className={[classes['button'], classes['button--green']].join(' ')}
-          to={'/note/update/' + props.noteId}>edit</Link>
+          to={'/note/update/' + props.noteId}>Edit</Link>
       ) :
       (null) }
       <Link 

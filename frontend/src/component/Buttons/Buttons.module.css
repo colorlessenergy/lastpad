@@ -1,5 +1,5 @@
 .buttons {
-  margin: 0 20px;
+  margin: 0 20px 40px 20px;
  
   display: flex;
   justify-content:  space-between;
@@ -15,6 +15,12 @@
   font-size: 17px;
   font-weight: bold;
   text-decoration: none;
+
+  transition: opacity 0.3s ease-in-out;
+}
+
+.button:hover {
+  opacity: 0.7;
 }
 
 .button--green {
@@ -31,6 +37,6 @@
 
 @media screen and (min-width: 961px) {
   .buttons {
-    margin: 0 40px;
+    margin: 0 40px 40px 40px;
   }
 }
