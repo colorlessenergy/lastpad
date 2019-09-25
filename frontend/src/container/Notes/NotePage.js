@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-
-import { getUserNoteAction } from '../../store/actions/';
+import { getUserNoteAction, deleteUserNoteAction } from '../../store/actions/';
 
 import renderHTML from 'react-render-html';
+
+import Buttons from '../../component/Buttons/Buttons';
 
 class NotePage extends Component {
   state = {
@@ -34,21 +34,10 @@ class NotePage extends Component {
 
     return (
       <div>
-        <p>Here is your note:</p>
+        <Buttons ableToEdit={true} noteId={noteId} deleteUserNote={this.props.deleteUserNote} history={this.props.history} />
         <div>
           <h1>{title}</h1>
           { content ? renderHTML(content) : (null) }
-        </div>
-        <div>
-          <Link to={'/note/update/' + noteId}>
-            Edit
-          </Link>
-          <Link to={'/note/' + noteId}>
-            View
-          </Link>
-          <Link to={'/note/delete/' + noteId}>
-            Delete
-          </Link>
         </div>
       </div>
     );
@@ -63,7 +52,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserNote: (noteId, history) => dispatch(getUserNoteAction(noteId, history))
+    getUserNote: (noteId, history) => dispatch(getUserNoteAction(noteId, history)),
+
+    deleteUserNote: (noteId) => {
+      dispatch(deleteUserNoteAction(noteId));
+    }
   };
 };
 
