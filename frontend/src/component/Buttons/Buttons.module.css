@@ -1,0 +1,36 @@
+.buttons {
+  margin: 0 20px;
+ 
+  display: flex;
+  justify-content:  space-between;
+}
+
+.button {
+  padding: 13px 20px;
+
+  background-color: red;
+  border-radius: 17px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.button--green {
+  background-color: #52CC3E;
+}
+
+.button--blue {
+  background-color: #06A9F4;
+}
+
+.button--red {
+  background-color: #FB4340
+}
+
+@media screen and (min-width: 961px) {
+  .buttons {
+    margin: 0 40px;
+  }
+}
