@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { getUserNoteAction, updateUserNoteAction } from '../../../store/actions/note';
+import { getUserNoteAction, updateUserNoteAction, deleteUserNoteAction } from '../../../store/actions/';
+
+import Buttons from '../../../component/Buttons/Buttons';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+
+import classes from '../CreateNote/CreateNote.module.css'
+
 
 class UpdateNote extends Component {
 
@@ -125,50 +130,69 @@ class UpdateNote extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="title">
-            title
-          </label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            onChange={this.handleChange}
-            value={this.state.title} />
-        </div>
-        <label htmlFor='content'></label>
-        <ReactQuill
-          id="content"
-          modules={this.modules}
-          formats={this.formats}
-          value={this.state.content}
-          onChange={this.onQuillChange} />
+      <React.Fragment>
+        <Buttons
+          ableToEdit={false}
+          noteId={this.state._id ? this.state._id : null}
+          deleteUserNote={this.props.deleteUserNote}
+          history={this.props.history} />
+        <form
+          className={classes['form']} 
+          onSubmit={this.handleSubmit}>
+          <div className={classes['form__group']}>
+            <label
+              className={classes['form__label']}
+              htmlFor="title">
+              title
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              className={classes['form__input']}
+              onChange={this.handleChange}
+              value={this.state.title} />
+          </div>
+          <div className={classes['form__group']}>
+            <label
+              className={classes['form__label']}
+              htmlFor='content'>
+              content
+            </label>
+            <ReactQuill
+              id="content"
+              className={classes['form__texteditor']}
+              modules={this.modules}
+              formats={this.formats}
+              value={this.state.content}
+              placeholder='Write about what you are feeling. :)'
+              onChange={this.onQuillChange} />
+          </div>
 
-        <div>
-          <button>submit</button>
+          <div className={classes['form__button--container']}>
+            <button className={classes['form__button']}>Edit</button>
 
-          {/* errors made on the frontend */}
-          { this.state.error ? (
-            <p>
-              { this.state.error }
-            </p>
-          ) : (
-            null
-          )}
-
-          {/* errors sent from backend */}
-          {
-            this.props.error ? (
-              <p>
-                { this.props.error }
+            {/* errors made on the frontend */}
+            {this.state.error ? (
+              <p className='error'>
+                {this.state.error}
               </p>
             ) : (
-              null
-            )}
+                null
+              )}
 
-        </div>
-      </form>
+            {/* errors sent from backend */}
+            {
+              this.props.error ? (
+                <p className='error'>
+                  {this.props.error}
+                </p>
+              ) : (
+                  null
+                )}
+          </div>
+        </form>
+      </React.Fragment>
     )
   }
 }
@@ -183,7 +207,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUserNote: (noteId, history) => dispatch(getUserNoteAction(noteId, history)),
-    updateUserNote: (note, history) => dispatch(updateUserNoteAction(note, history))
+    updateUserNote: (note, history) => dispatch(updateUserNoteAction(note, history)),
+    deleteUserNote: (noteId) => {
+      dispatch(deleteUserNoteAction(noteId));
+    }
   }
 }
 
