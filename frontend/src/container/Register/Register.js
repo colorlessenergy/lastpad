@@ -34,7 +34,6 @@ class Register extends Component {
       });
     } else {
 
-      console.log(this.props.history);
       this.props.registerUser(this.state, this.props.history);
       
       this.setState({
