@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { getUserNoteAction, deleteUserNoteAction } from '../../store/actions/';
+import { Redirect } from 'react-router-dom';
 
 import renderHTML from 'react-render-html';
 
@@ -16,7 +17,10 @@ class NotePage extends Component {
   }
 
   render() {
-    // soon this would not work when adding react quill
+    if (!this.props.userAuth) {
+      return <Redirect to='/login' />
+    }
+
     let title = null;
     let content = null;
     let noteId = null;
@@ -46,7 +50,8 @@ class NotePage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    note: state.notes.note
+    note: state.notes.note,
+    userAuth: state.auth.userIsLogin
   };
 };
 

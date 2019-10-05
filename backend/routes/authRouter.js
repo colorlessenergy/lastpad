@@ -47,5 +47,4 @@ Router.route('/logout')
     return res.sendStatus(200);
   })
 
-
 module.exports = Router;
