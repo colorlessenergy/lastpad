@@ -52,7 +52,7 @@ export const userIsLogin = () => {
       credentials: 'include'
     })
     .then((res) => {
-      if (!res.ok) {
+      if (!res.ok && res.status !== 500) {
         return dispatch({ type: actionTypes.CHECK_USER_AUTH_ERROR });
       } else {
         return dispatch({ type: actionTypes.CHECK_USER_AUTH_SUCCESS });
