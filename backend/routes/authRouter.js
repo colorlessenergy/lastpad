@@ -47,10 +47,4 @@ Router.route('/logout')
     return res.sendStatus(200);
   })
 
-
-Router.route('/checkonline')
-  .get((req, res) => {
-    return res.sendStatus(200);
-  })
-
 module.exports = Router;
