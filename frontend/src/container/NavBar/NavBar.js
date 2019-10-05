@@ -6,8 +6,6 @@ import { userIsLogin, logoutUser } from '../../store/actions/';
 
 import classes from './NavBar.module.css';
 
-import { createNoteAction } from '../../store/actions/note';
-
 import {createOfflineToOnline} from '../../shared/online-check';
 
 
@@ -69,10 +67,6 @@ const mapDispatchToProps = (dispatch) => {
     logoutUser: () => {
       dispatch(logoutUser());
     },
-
-    createNote: (note, history) => {
-      dispatch(createNoteAction(note, history))
-    }
   }
 }
 

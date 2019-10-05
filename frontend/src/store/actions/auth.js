@@ -53,6 +53,7 @@ export const userIsLogin = () => {
         credentials: 'include'
       })
       .then((res) => {
+        // if the user is offline use a success action
         if (!res.ok && res.status !== 500) {
           return dispatch({ type: actionTypes.CHECK_USER_AUTH_ERROR });
         } else {

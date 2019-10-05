@@ -45,6 +45,9 @@ export const GetAllUserNotesAction = () => {
 
 export const getUserNoteAction = (noteId, history) => {
   return (dispatch, getState) => {
+
+    // get all notes from localstorage when offline
+    
     function offlineMode () {
       let notes = JSON.parse(localStorage.notes);
   
@@ -76,6 +79,9 @@ export const getUserNoteAction = (noteId, history) => {
 
 export const createNoteAction = (note, history) => {
   return (dispatch, getState) => {
+
+    // when the internet is not connected execute this function
+    // to create a note offline in localstorage
     function offlineMode () {
       if (localStorage.notes) {
         let parsedNotes = JSON.parse(localStorage.getItem('notes'));
@@ -117,7 +123,6 @@ export const createNoteAction = (note, history) => {
         offlineMode();
       });
     } else {
-      // offline mode
       offlineMode();
     }
     
