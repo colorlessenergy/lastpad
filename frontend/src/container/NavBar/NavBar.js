@@ -16,9 +16,8 @@ class NavBar extends Component {
   componentDidMount = () => {
     this.props.userIsLogin();
 
-    setInterval(() => {
-      createOfflineToOnline(this.props)
-    }, 5000)
+    // check every 5 seconds if there is a new change
+    setInterval(createOfflineToOnline, 5000);
   }
 
   logoutUser = () => {
