@@ -48,17 +48,21 @@ export const LoginAction = (user) => {
 
 export const userIsLogin = () => {
   return (dispatch, getState) => {
-    fetch(config.BACKEND_URL + '/userislogin', {
-      credentials: 'include'
-    })
-    .then((res) => {
-      if (!res.ok && res.status !== 500) {
-        return dispatch({ type: actionTypes.CHECK_USER_AUTH_ERROR });
-      } else {
-        return dispatch({ type: actionTypes.CHECK_USER_AUTH_SUCCESS });
-      }
-    })
-    .catch(err => console.log(err));
+    if (navigator.onLine) {
+      fetch(config.BACKEND_URL + '/userislogin', {
+        credentials: 'include'
+      })
+      .then((res) => {
+        if (!res.ok && res.status !== 500) {
+          return dispatch({ type: actionTypes.CHECK_USER_AUTH_ERROR });
+        } else {
+          return dispatch({ type: actionTypes.CHECK_USER_AUTH_SUCCESS });
+        }
+      })
+      .catch(err => dispatch({ type: actionTypes.CHECK_USER_AUTH_SUCCESS }) );
+    } else {
+      return dispatch({ type: actionTypes.CHECK_USER_AUTH_SUCCESS });
+    }
   }
 };
 

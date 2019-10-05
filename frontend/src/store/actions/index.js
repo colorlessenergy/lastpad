@@ -9,5 +9,6 @@ export {
   GetAllUserNotesAction,
   getUserNoteAction,
   deleteUserNoteAction,
-  updateUserNoteAction
+  updateUserNoteAction,
+  createNoteAction
 } from './note';

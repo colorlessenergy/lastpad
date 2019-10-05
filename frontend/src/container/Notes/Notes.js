@@ -13,6 +13,7 @@ class Note extends Component {
 
   componentDidMount() {
     this.props.getAllUserNotesAction();
+
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -79,7 +80,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteUserNote: (noteId) => {
       dispatch(deleteUserNoteAction(noteId));
-    }
+    },
   }
 }
 

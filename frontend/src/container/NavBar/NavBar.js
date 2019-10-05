@@ -6,10 +6,19 @@ import { userIsLogin, logoutUser } from '../../store/actions/';
 
 import classes from './NavBar.module.css';
 
+import { createNoteAction } from '../../store/actions/note';
+
+import {createOfflineToOnline} from '../../shared/online-check';
+
+
 class NavBar extends Component {
 
   componentDidMount = () => {
     this.props.userIsLogin();
+
+    setInterval(() => {
+      createOfflineToOnline(this.props)
+    }, 5000)
   }
 
   logoutUser = () => {
@@ -60,6 +69,10 @@ const mapDispatchToProps = (dispatch) => {
 
     logoutUser: () => {
       dispatch(logoutUser());
+    },
+
+    createNote: (note, history) => {
+      dispatch(createNoteAction(note, history))
     }
   }
 }

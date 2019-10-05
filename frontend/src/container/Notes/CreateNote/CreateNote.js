@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'; 
 
 import { createNoteAction } from '../../../store/actions/note';
 
@@ -71,6 +72,10 @@ class CreateNote extends Component {
   }
 
   render() {
+    if (!this.props.userAuth) {
+      return <Redirect to='/login' />
+    }
+    
     return (
       <form 
         className={classes['form']}
@@ -113,6 +118,12 @@ class CreateNote extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    userAuth: state.auth.userIsLogin
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createNote: (note, history) => {
@@ -121,4 +132,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(CreateNote);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateNote);

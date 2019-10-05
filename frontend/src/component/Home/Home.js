@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Notes from '../../container/Notes/Notes';
 
-function Home () {
-  return (
-    <React.Fragment>
-      <Notes />
-    </React.Fragment>
-  )
+class Home extends Component {
+  componentDidMount () {
+    
+  }
+
+  render () {
+    return (
+      <React.Fragment>
+        <Notes />
+      </React.Fragment>
+    )
+  }
+  
 }
 
 export default Home;
