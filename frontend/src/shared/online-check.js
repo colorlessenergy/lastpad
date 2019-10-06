@@ -18,10 +18,30 @@ export function createOfflineToOnline () {
           body: JSON.stringify(note)
         })
         .catch((err) => console.log(err));
-    
+
       });
 
       localStorage.removeItem('createdNotes');
+    }
+
+    // send request to delete notes that where made offline
+    if (localStorage.deletedNotes && JSON.parse(localStorage.deletedNotes).length > 0) {
+      let deletedNotesLocalStorage = localStorage.deletedNotes;
+      let deletedNotes = JSON.parse(deletedNotesLocalStorage);
+
+      // loop through all deletedNotes and make a request to delete a note in mongoDB
+      deletedNotes.forEach(note => {
+        fetch(config.BACKEND_URL + '/note/' + note._id, {
+          credentials: 'include',
+          method: 'DELETE'
+        })
+          .catch(err => {
+            console.log('err in deleting note', err);
+          });
+      });
+
+      // remove deletedNotes from localStorage
+      localStorage.removeItem('deletedNotes');
     }
   }
 }
