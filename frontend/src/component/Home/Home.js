@@ -7,7 +7,7 @@ function Home () {
     <React.Fragment>
       <Notes />
     </React.Fragment>
-  )
+  );  
 }
 
 export default Home;
