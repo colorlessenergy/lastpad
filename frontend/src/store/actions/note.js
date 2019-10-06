@@ -20,7 +20,7 @@ export const GetAllUserNotesAction = () => {
         credentials: 'include'
       })
       .then(response => {
-        return response.json()      
+        return response.json();
       })
       .then((notes) => {
         // store notes into localstorage
@@ -29,12 +29,12 @@ export const GetAllUserNotesAction = () => {
         localStorage.setItem('notes', JSON.stringify(notes));
 
         dispatch({ type: actionTypes.RETRIEVE_NOTES_SUCCESS, notes });
-     })
-    .catch(function(error) {
-      // pass the notes from localstorage into redux
-      // if they are on a local network
-      offlineMode();
-    });
+      })
+      .catch(function (error) {
+        // pass the notes from localstorage into redux
+        // if they are on a local network
+        offlineMode();
+      });
 
     } else {
       // no internet connection
@@ -47,10 +47,10 @@ export const getUserNoteAction = (noteId, history) => {
   return (dispatch, getState) => {
 
     // get all notes from localstorage when offline
-    
+
     function offlineMode () {
       let notes = JSON.parse(localStorage.notes);
-  
+
       let requestedNote = notes.find((noteObj) => {
         return noteObj._id == noteId;
       });
@@ -83,7 +83,7 @@ export const createNoteAction = (note, history) => {
     // when the internet is not connected execute this function
     // to create a note offline in localstorage
     function offlineMode () {
-      if (localStorage.notes) {
+      if (localStorage && localStorage.notes) {
         let parsedNotes = JSON.parse(localStorage.getItem('notes'));
         note._id = Math.floor(Math.random() * 100);
 
@@ -95,7 +95,7 @@ export const createNoteAction = (note, history) => {
           localStorage.setItem('createdNotes', JSON.stringify(createdNotes));
         }
 
-        
+
         parsedNotes.push(note);
         localStorage.setItem('notes', JSON.stringify(parsedNotes));
 
@@ -115,7 +115,7 @@ export const createNoteAction = (note, history) => {
       })
       .then(note => {
         if (history !== false) {
-          history.push('/note/' + note._id);          
+          history.push('/note/' + note._id);
         }
         dispatch({ type: actionTypes.CREATE_NOTE_SUCCESS, note })
       })
@@ -125,25 +125,56 @@ export const createNoteAction = (note, history) => {
     } else {
       offlineMode();
     }
-    
+
   };
 };
 
 export const deleteUserNoteAction = (noteId) => {
   return (dispatch, getState) => {
-    fetch(config.BACKEND_URL + '/note/' + noteId, {
-      credentials: 'include',
-      method: 'DELETE'
-    })
-    .then(res => {
-      return res.json()
-        .then(json => {
-          dispatch({ type: actionTypes.DELETE_NOTE_SUCCESS, noteId: json })
+
+    function offlineMode() {
+      if (localStorage && localStorage.notes) {
+        let localStorageParsedNotes = JSON.parse(localStorage.getItem('notes'));
+
+        // loop to move note to be deleted from localStorage.notes
+        let noteToBeDeleted = localStorageParsedNotes.find((note, index) => {
+          if (noteId == note._id) {
+            localStorageParsedNotes.splice(index, 1);
+          }
+          return noteId == note._id;
         });
-    })
-    .catch(err => {
-      console.log('err in deleting note', err);
-    });
+        localStorage.setItem('notes', JSON.stringify(localStorageParsedNotes));
+        dispatch(GetAllUserNotesAction());
+
+        // check to see if there is already a local deletedNotes array
+        if (localStorage.deletedNotes === undefined) {
+          localStorage.setItem('deletedNotes', JSON.stringify([noteToBeDeleted]));
+        }
+        else {
+          let deletedNotes = JSON.parse(localStorage.deletedNotes);
+          deletedNotes.push(noteToBeDeleted);
+          localStorage.setItem('deletedNotes', JSON.stringify(deletedNotes));
+        }
+      }
+    };
+
+    if (navigator.onLine) {
+      fetch(config.BACKEND_URL + '/note/' + noteId, {
+        credentials: 'include',
+        method: 'DELETE'
+      })
+      .then(res => {
+        return res.json();
+      })
+      .then(json => {
+        dispatch({ type: actionTypes.DELETE_NOTE_SUCCESS, noteId: json })
+      })
+      .catch(err => {
+        console.log('err in deleting note', err);
+      });
+    } else {
+      offlineMode();
+    }
   };
 };
 
@@ -161,6 +192,6 @@ export const updateUserNoteAction = (note, history) => {
     })
     .catch(err => {
       dispatch({ type: actionTypes.UPDATE_NOTE_ERROR, err });
-    })
+    });
   }
 }
