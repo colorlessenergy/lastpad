@@ -109,9 +109,22 @@ exports.deleteNoteById = function (req, res, next) {
  */
 
 exports.updateNoteById = function (req, res, next) {
-  Note.findByIdAndUpdate(req.params.id, req.body, function (err, note) {
+  Note.findById(req.params.id, function (err, note) {
     if (err) return next(err);
     if (!note) return res.status(404).send('note does not exist');
-    return res.sendStatus(200);
+
+    if (note.lastSaved.getTime() < new Date(req.body.lastSaved).getTime()) {
+      note.title = req.body.title;
+      note.content = req.body.content;
+      note.lastSaved = new Date(req.body.lastSaved);
+      
+      note.save(function (err, note) {
+        if (err) return next (err);
+        return res.sendStatus(200);
+      });
+
+    } else {
+      return res.sendStatus(200);
+    }
   });
 }
