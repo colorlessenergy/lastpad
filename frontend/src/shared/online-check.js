@@ -35,13 +35,32 @@ export function createOfflineToOnline () {
           credentials: 'include',
           method: 'DELETE'
         })
-          .catch(err => {
-            console.log('err in deleting note', err);
-          });
+        .catch(err => {
+          console.log('err in deleting note', err);
+        });
       });
 
       // remove deletedNotes from localStorage
       localStorage.removeItem('deletedNotes');
+    }
+
+    if (localStorage.updatedNotes && JSON.parse(localStorage.updatedNotes).length > 0) {
+      let updatedNotes = JSON.parse(localStorage.updatedNotes);
+
+
+      updatedNotes.forEach(note => {
+        fetch(config.BACKEND_URL + '/note/' + note._id, {
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          method: 'PUT',
+          body: JSON.stringify(note)
+        })
+        .catch(err => {
+          console.log(err)
+        });
+      });
+
+      localStorage.removeItem('updatedNotes');
     }
   }
 }
