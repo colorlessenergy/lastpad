@@ -22,6 +22,9 @@ const initializePassport = require('./config/passport-config');
 
 const session = require('express-session');
 
+const MongoStore = require('connect-mongo')(session);
+
+
 // Configure Express application.
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
@@ -30,7 +33,8 @@ app.use(morgan('dev'))
 app.use(session({
   secret: 'secret',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
 app.use(passport.initialize());
