@@ -1,5 +1,9 @@
 var User = require('../models/schemas/user');
 var Note = require('../models/schemas/note');
+const config = require('../config/config');
+
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr(config.SECRET);
 
 /**
  * get a user's notes
@@ -18,6 +22,11 @@ exports.getNotes = function (req, res, next) {
         return res.status(401).send('No user with that ID');
       }
 
+      user.notes.forEach((element, index) => {
+        user.notes[index].title = cryptr.decrypt(element.title);
+        user.notes[index].content = cryptr.decrypt(element.content);
+      });
+
       return res.json(user.notes);
     });
 }
@@ -34,6 +43,14 @@ exports.getNoteById = function (req, res, next) {
       if (err) return next(err);
       if (!note) return res.sendStatus(404);
 
+      if (note.title) {
+        note.title = cryptr.decrypt(note.title);
+      }
+
+      if (note.content) {
+        note.content = cryptr.decrypt(note.content);
+      }
+
       return res.json(note);
     });
 }
@@ -47,6 +64,14 @@ exports.getNoteById = function (req, res, next) {
  */
 
 exports.createNote = function (req, res, next) {
+  if (req.body.content) {
+    req.body.content = cryptr.encrypt(req.body.content);
+  }
+
+  if (req.body.title) {
+    req.body.title = cryptr.encrypt(req.body.title);
+  }
+
   let note = new Note({
     content: req.body.content,
     title: req.body.title,
@@ -114,8 +139,16 @@ exports.updateNoteById = function (req, res, next) {
     if (!note) return res.status(404).send('note does not exist');
 
     if (note.lastSaved.getTime() < new Date(req.body.lastSaved).getTime()) {
-      note.title = req.body.title;
-      note.content = req.body.content;
+
+      if (req.body.title) {
+        note.title = cryptr.encrypt(req.body.title);
+      }
+
+      if (req.body.content) {
+        note.content = cryptr.encrypt(req.body.content);
+      }
+      
+
       note.lastSaved = new Date(req.body.lastSaved);
       
       note.save(function (err, note) {
