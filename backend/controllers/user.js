@@ -1,8 +1,6 @@
 var User = require('../models/schemas/user');
 
 exports.registerUser = function (req, res, next) {
-
-  console.log('creating a user');
   
   var user = new User(req.body);
 

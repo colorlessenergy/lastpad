@@ -19,9 +19,7 @@ const noteReducer = (state = initState, action) => {
       };
 
     case actionTypes.CREATE_NOTE_SUCCESS:
-      return {
-        note: action.note
-      };
+      return state;
 
     case actionTypes.DELETE_NOTE_SUCCESS:
       let notes = [...state.notes];
