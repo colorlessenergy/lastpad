@@ -21,20 +21,16 @@ class CreateNote extends Component {
 
   modules = {
     toolbar: [
-      [{ header: '1' }, { header: '2' }, { font: [] }],
-      [{ size: [] }],
+      [{ header: '1' }, { header: '2' }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [{ list: 'ordered' }, { list: 'bullet' }],
       ['link'],
-      ['clean'],
       ['code-block']
     ]
   };
 
   formats = [
     'header',
-    'font',
-    'size',
     'bold',
     'italic',
     'underline',
