@@ -7,6 +7,8 @@ import renderHTML from 'react-render-html';
 
 import Buttons from '../../component/Buttons/Buttons';
 
+import classes from './Notes.module.css';
+
 class NotePage extends Component {
   state = {
     note: null
@@ -39,7 +41,7 @@ class NotePage extends Component {
     return (
       <div>
         <Buttons ableToEdit={true} noteId={noteId} deleteUserNote={this.props.deleteUserNote} history={this.props.history} />
-        <div>
+        <div className={classes['margin-content']}>
           <h1>{title}</h1>
           { content ? renderHTML(content) : (null) }
         </div>
