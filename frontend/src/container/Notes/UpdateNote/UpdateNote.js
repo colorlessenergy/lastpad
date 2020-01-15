@@ -126,7 +126,7 @@ class UpdateNote extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className={classes['container']}>
         <Buttons
           ableToEdit={false}
           noteId={this.state._id ? this.state._id : null}
@@ -188,7 +188,7 @@ class UpdateNote extends Component {
                 )}
           </div>
         </form>
-      </React.Fragment>
+      </div>
     )
   }
 }

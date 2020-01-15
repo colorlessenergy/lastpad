@@ -1,4 +1,6 @@
 .form {
+  margin-top: 20px;
+
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -53,6 +55,10 @@
 
 .form__texteditor {
   margin-bottom: 10px;
+}
+
+.container {
+  margin-top: 10px;
 }
 
 @media screen and (min-width: 1021px) {

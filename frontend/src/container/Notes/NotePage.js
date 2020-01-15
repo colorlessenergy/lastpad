@@ -39,7 +39,7 @@ class NotePage extends Component {
     }
 
     return (
-      <div>
+      <div className={classes['contain-note']}>
         <Buttons ableToEdit={true} noteId={noteId} deleteUserNote={this.props.deleteUserNote} history={this.props.history} />
         <div className={classes['margin-content']}>
           <h1>{title}</h1>
