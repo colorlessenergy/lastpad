@@ -32,15 +32,19 @@ class NavBar extends Component {
     // show register and login
     const links = this.props.isUserLogin ? (
       <nav className={classes['nav']}>
-        <Link className={classes['nav__link']} to='/note/create'>create</Link>
         <Link className={classes['nav__link']} to='/'>lastpad</Link>
-        <p className={classes['nav__link']} onClick={this.logoutUser}>logout</p>
+        <div>
+          <Link className={[classes['nav__link'], classes['nav__link--margin']].join(' ')} to='/note/create'>create</Link>
+          <p className={classes['nav__link']} onClick={this.logoutUser}>logout</p>
+        </div>
       </nav>
       ) : (
         <nav className={classes['nav']}>
-        <Link className={classes['nav__link']} to='/register'>register</Link>
         <Link className={classes['nav__link']} to='/'>lastpad</Link>
-        <Link className={classes['nav__link']} to='/login'>login</Link>
+        <div>
+          <Link className={[classes['nav__link'], classes['nav__link--margin']].join(' ')} to='/register'>register</Link>
+          <Link className={classes['nav__link']} to='/login'>login</Link>
+        </div>
       </nav>
       );
 

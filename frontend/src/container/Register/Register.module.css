@@ -82,13 +82,14 @@
   color: #fb2c2d;
 }
 
-.center {
-  margin: 0 auto;
-}
 
 @media screen and (min-width: 961px) {
   .info {
     display: block;
+  }
+
+  .center {
+    margin: 0 auto;
   }
 
   .form {
