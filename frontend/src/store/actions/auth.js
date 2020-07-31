@@ -3,7 +3,6 @@ const config = require('../../config/config');
 
 export const RegisterAction = (user, history) => {
   return (dispatch, getState) => {
-    console.log('attempting to register', user);
     fetch(config.BACKEND_URL +'/register', {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
@@ -26,7 +25,6 @@ export const RegisterAction = (user, history) => {
 
 export const LoginAction = (user) => {
   return (dispatch, getState) => {
-    console.log('attempting to login user');
     fetch(config.BACKEND_URL+'/login', {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',

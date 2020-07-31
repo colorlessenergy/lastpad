@@ -14,6 +14,20 @@ class Login extends Component {
     error: false
   }
 
+  handleloginAsGuest = (ev) => {
+    ev.preventDefault();
+
+    let guestCredentials = {
+      email: 'test@brianmunoz.co',
+      password: 'test'
+    }
+
+    this.props.loginUser(guestCredentials);
+
+    this.setState({
+      error: false
+    });
+  }
 
   handleSubmit = (ev) => {
     ev.preventDefault();
@@ -92,7 +106,11 @@ class Login extends Component {
 
         <div className={classes['form__group--button-container']}>
           <button
-            className={classes['form__button']}>submit</button>
+            className={classes['form__button']}>Login</button>
+
+          <button
+            onClick={this.handleloginAsGuest}
+            className={[classes['form__button'], classes['form__button--guest']].join(' ')}>Login as guest</button>
 
           {/* errors made on the frontend */}
           {this.state.error ? (
