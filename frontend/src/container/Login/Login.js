@@ -18,7 +18,7 @@ class Login extends Component {
     ev.preventDefault();
 
     let guestCredentials = {
-      email: 'test@gmail.com',
+      email: 'test@brianmunoz.co',
       password: 'test'
     }
 
