@@ -79,7 +79,7 @@ class Login extends Component {
             className={classes['form__label']} 
             htmlFor="email">
             Email
-        </label>
+          </label>
           <input
             type="email"
             id="email"
