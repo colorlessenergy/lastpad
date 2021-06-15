@@ -68,10 +68,13 @@
   background-color: #fb2c2d;
 }
 
-.filter {
+.filter-container {
   margin: 35px 20px 17px 20px;
+}
+
+.filter {
   padding: 9px;
-  width: 88%;
+  width: 100%;
  
   border: 1px solid #000;
   border-radius: 5px;
@@ -131,12 +134,7 @@
   }
 
   .filter-container {
-    width: 100%;
-
-    text-align: center
-  }
-
-  .filter {
-    width: 29%;
+    margin: 35px auto 17px auto;
+    width: 80%;
   }
 }
