@@ -132,7 +132,7 @@ class Login extends Component {
 
         <div className={classes['login-register-prompt']}>
             Don't have an account? 
-            <Link className={classes['link--blue']} to='/login'>Sign up</Link>
+            <Link className={classes['link--blue']} to='/register'>Sign up</Link>
           </div>
       </form>
     );
