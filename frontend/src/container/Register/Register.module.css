@@ -12,17 +12,17 @@
 }
 
 .form__label {
-  color: #9F9F9F;
-  font-size: 18px;
+  color: #000000;
 }
 
 .form__input {
   height: 40px;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 10px;
   padding-left: 10px;
 
   border: #E5E5E5 1px solid;
+  font-size: 18px;
   outline: none;
 }
 
