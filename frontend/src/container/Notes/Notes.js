@@ -68,7 +68,7 @@ class Note extends Component {
         </div>
       </article>
     )) : (
-        <p>
+        <p className={ classes['notes__empty'] }>
             A note with that title does not exists.
         </p>
     );
