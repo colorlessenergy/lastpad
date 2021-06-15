@@ -31,13 +31,11 @@
 }
 
 .form__group {
-  margin: 0 60px;
+  margin: 0 30px;
 }
 
 .form__group--button-container {
-  margin: 50px 60px 40px 60px;
-
-  text-align: center;
+  margin: 50px 30px 40px 30px;
 }
 
 .form__button {
