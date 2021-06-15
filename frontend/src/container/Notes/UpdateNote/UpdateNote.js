@@ -145,6 +145,7 @@ class UpdateNote extends Component {
               type="text"
               id="title"
               name="title"
+              placeholder="title"
               className={classes['form__input']}
               onChange={this.handleChange}
               value={this.state.title} />
@@ -161,7 +162,7 @@ class UpdateNote extends Component {
               modules={this.modules}
               formats={this.formats}
               value={this.state.content}
-              placeholder='Write about what you are feeling. :)'
+              placeholder="I did something awesome today :)"
               onChange={this.onQuillChange} />
           </div>
 

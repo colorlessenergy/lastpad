@@ -78,12 +78,13 @@ class Login extends Component {
           <label
             className={classes['form__label']} 
             htmlFor="email">
-            email
-        </label>
+            Email
+          </label>
           <input
             type="email"
             id="email"
             name="email"
+            placeholder="email"
             onChange={this.handleChange}
             className={[classes['form__input'], classes['form__input--mb']].join(' ')}
             value={this.state.email} />
@@ -93,12 +94,13 @@ class Login extends Component {
           <label
             className={classes['form__label']}
             htmlFor="password">
-            password
+            Password
           </label>
           <input
             type="password"
             id="password"
             name="password"
+            placeholder="password"
             onChange={this.handleChange}
             className={classes['form__input']}
             value={this.state.password} />
@@ -132,7 +134,7 @@ class Login extends Component {
 
         <div className={classes['login-register-prompt']}>
             Don't have an account? 
-            <Link className={classes['link--blue']} to='/login'>Sign up</Link>
+            <Link className={classes['link--blue']} to='/register'>Sign up</Link>
           </div>
       </form>
     );

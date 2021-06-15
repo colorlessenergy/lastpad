@@ -86,6 +86,7 @@ class CreateNote extends Component {
             type="text"
             id="title"
             name="title"
+            placeholder="title"
             className={classes['form__input']}
             onChange={this.handleChange}
             value={this.state.title} />
@@ -102,7 +103,7 @@ class CreateNote extends Component {
             modules={this.modules}
             formats={this.formats}
             value={this.state.content}
-            placeholder='Write about what you are feeling. :)'
+            placeholder="I did something awesome today :)"
             onChange={this.onQuillChange} />
         </div>
 

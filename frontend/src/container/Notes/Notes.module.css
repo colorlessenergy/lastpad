@@ -68,15 +68,19 @@
   background-color: #fb2c2d;
 }
 
-.filter {
+.filter-container {
   margin: 35px 20px 17px 20px;
+}
+
+.filter {
   padding: 9px;
-  width: 88%;
+  width: 100%;
  
   border: 1px solid #000;
   border-radius: 5px;
-  background-color: #F4F6FB;
-  color: #7787A0;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 18px;
   outline: none;
   letter-spacing: 1px;
 }
@@ -87,6 +91,10 @@
 
 .contain-note {
   margin-top: 20px;
+}
+
+.notes__empty {
+  margin: 0 20px;
 }
 
 @media screen and (min-width: 961px) {
@@ -126,12 +134,7 @@
   }
 
   .filter-container {
-    width: 100%;
-
-    text-align: center
-  }
-
-  .filter {
-    width: 29%;
+    margin: 35px auto 17px auto;
+    width: 80%;
   }
 }

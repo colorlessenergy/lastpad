@@ -35,6 +35,10 @@ button {
   color: #fb2c2d;
 }
 
+#content .ql-container {
+  height: auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

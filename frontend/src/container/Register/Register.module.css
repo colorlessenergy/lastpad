@@ -12,31 +12,30 @@
 }
 
 .form__label {
-  color: #9F9F9F;
-  font-size: 18px;
+  color: #000000;
 }
 
 .form__input {
   height: 40px;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 10px;
   padding-left: 10px;
 
   border: #E5E5E5 1px solid;
+  font-size: 18px;
   outline: none;
 }
 
 .form__input--mb {
-  margin-bottom: 64px;
+  margin-bottom: 40px;
 }
-
 
 .form__group {
   margin: 0 60px;
 }
 
 .form__group--button-container {
-  margin: 50px 60px 60px 60px;
+  margin: 50px 60px 40px 60px;
 
   text-align: center;
 }
