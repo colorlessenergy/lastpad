@@ -46,7 +46,7 @@ class Note extends Component {
       return <Redirect to='/login' />
     }
 
-    let notes = this.state.filteredNotes ? this.state.filteredNotes.map(note => (
+    let notes = this.state.filteredNotes && this.state.filteredNotes.length ? this.state.filteredNotes.map(note => (
       <article key={note._id} className={classes['note']}>
         <h3 className={classes['note__title']}>
           {note.title}
@@ -67,7 +67,11 @@ class Note extends Component {
           </span>
         </div>
       </article>
-    )) : (null);
+    )) : (
+        <p>
+            A note with that title does not exists.
+        </p>
+    );
 
     return (
       <div>
