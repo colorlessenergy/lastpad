@@ -17,7 +17,7 @@
 .form__label {
   margin-bottom: 10px;
 
-  color: #BABABA;
+  color: #000000;
   text-transform: capitalize;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .form__button--container {
-  margin: auto 20px 20px 20px;
+  margin: 0 20px 20px 20px;
 }
 
 .form__button {
@@ -41,7 +41,7 @@
   height: 50px;
 
   background-color: #01ca25;
-  border-radius: 9px;
+  border-radius: 17px;
   color: #fff;
   font-weight: bold;
   font-size: 18px;
@@ -55,6 +55,8 @@
 
 .form__texteditor {
   margin-bottom: 10px;
+
+  background-color: #ffffff;
 }
 
 .container {
@@ -67,20 +69,16 @@
   }
   
   .form__input {
-    height: 60px;
-  }
-
-  .form__label {
-    font-size: 28px;
+    font-size: 18px;
+    padding: 20px 10px;
   }
 
   .form__button {
-    width: 60%;
-    height: 90px;
+    width: 150px;
     font-size: 24px;
   }
 
   .form__button--container {
-    text-align: center;
+    margin: 0 40px 40px 40px;
   }
 }
