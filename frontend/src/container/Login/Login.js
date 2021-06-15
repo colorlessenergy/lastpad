@@ -84,6 +84,7 @@ class Login extends Component {
             type="email"
             id="email"
             name="email"
+            placeholder="email"
             onChange={this.handleChange}
             className={[classes['form__input'], classes['form__input--mb']].join(' ')}
             value={this.state.email} />
@@ -99,6 +100,7 @@ class Login extends Component {
             type="password"
             id="password"
             name="password"
+            placeholder="password"
             onChange={this.handleChange}
             className={classes['form__input']}
             value={this.state.password} />
