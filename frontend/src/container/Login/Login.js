@@ -78,7 +78,7 @@ class Login extends Component {
           <label
             className={classes['form__label']} 
             htmlFor="email">
-            email
+            Email
         </label>
           <input
             type="email"
@@ -93,7 +93,7 @@ class Login extends Component {
           <label
             className={classes['form__label']}
             htmlFor="password">
-            password
+            Password
           </label>
           <input
             type="password"
