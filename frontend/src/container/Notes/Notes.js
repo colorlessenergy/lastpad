@@ -67,11 +67,7 @@ class Note extends Component {
           </span>
         </div>
       </article>
-    )) : (
-        <p className={ classes['notes__empty'] }>
-            A note with that title does not exists.
-        </p>
-    );
+    )) : (null);
 
     return (
       <div>
@@ -82,6 +78,11 @@ class Note extends Component {
             onChange={this.handleChangeFilterNotes} />
         </div>
         <section className={classes['notes']}>
+            { this.state.filteredNotes && this.state.filteredNotes.length === 0 ? (
+                <p className={ classes['notes__empty'] }>
+                   A note with that title does not exists.
+                </p>
+            ) : (null)}
           {notes}
         </section>
       </div>
