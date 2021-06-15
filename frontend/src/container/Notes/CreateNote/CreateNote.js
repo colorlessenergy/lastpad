@@ -86,6 +86,7 @@ class CreateNote extends Component {
             type="text"
             id="title"
             name="title"
+            placeholder="title"
             className={classes['form__input']}
             onChange={this.handleChange}
             value={this.state.title} />
