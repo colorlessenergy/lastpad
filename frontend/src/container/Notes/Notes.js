@@ -78,7 +78,7 @@ class Note extends Component {
             onChange={this.handleChangeFilterNotes} />
         </div>
         <section className={classes['notes']}>
-            { this.state.filteredNotes && this.state.filteredNotes.length === 0 ? (
+            { this.props?.notes?.length && this.state.filteredNotes && this.state.filteredNotes.length === 0 ? (
                 <p className={ classes['notes__empty'] }>
                    A note with that title does not exists.
                 </p>
